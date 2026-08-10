@@ -1,0 +1,23 @@
+# Kopieren nach config.local; diese lokale Datei wird nicht versioniert.
+# Reale Umgebungsvariablen überschreiben Werte aus dieser Datei.
+
+# OpenAI-kompatibler lokaler Endpoint
+PI_BASE_URL=http://127.0.0.1:8000/v1
+PI_API_KEY=local
+PI_PROVIDER=local
+PI_MODEL=my-model
+PI_API_TYPE=openai-completions
+
+# Frei an den installierten Agenten anpassbar. Der Harness übergibt den Prompt
+# auf stdin und ersetzt die dokumentierten Platzhalter vor dem Start.
+PI_COMMAND=pi -p --mode json --provider {provider} --model {model}
+
+# Vergleichsrelevante Grenzen
+BENCH_BUDGET_SECONDS=1200
+BENCH_TEST_TIMEOUT=300
+BENCH_ISOLATE_PI_CONFIG=1
+BENCH_RESTORE_PROTECTED=1
+BENCH_RESULTS_DIR=results
+
+# Optional für die Ergebnisbeschriftung
+BENCH_LABEL=my-model

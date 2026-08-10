@@ -1,0 +1,28 @@
+{
+  "id": "py-logstats",
+  "title": "Statistics CLI for structured application logs",
+  "language": "python",
+  "summary": "Implement logstats.py: parse a line-oriented log format, filter it, and emit a deterministic text or JSON report.",
+  "budget_seconds": 1200,
+  "test_timeout": 120,
+  "protected_paths": ["tests"],
+  "spec": "README.md",
+  "spec_target": "TASK.md",
+  "seed": "seed",
+  "suites": [
+    {
+      "name": "library",
+      "cmd": ["python3", "-m", "unittest", "-v", "tests.test_logstats"],
+      "weight": 2,
+      "timeout": 120,
+      "description": "parse_line, build_report and the two renderers"
+    },
+    {
+      "name": "cli",
+      "cmd": ["python3", "-m", "unittest", "-v", "tests.test_cli"],
+      "weight": 1,
+      "timeout": 120,
+      "description": "argument handling, stdin/file input and exit codes"
+    }
+  ]
+}

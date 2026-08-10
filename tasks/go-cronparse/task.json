@@ -1,0 +1,28 @@
+{
+  "id": "go-cronparse",
+  "title": "Cron expression parser and schedule evaluator",
+  "language": "go",
+  "summary": "Implement the cronparse package: parse five-field cron expressions with ranges, steps, names and macros, and compute the next matching time.",
+  "budget_seconds": 1200,
+  "test_timeout": 240,
+  "protected_paths": ["parse_test.go", "schedule_test.go"],
+  "spec": "README.md",
+  "spec_target": "TASK.md",
+  "seed": "seed",
+  "suites": [
+    {
+      "name": "parse",
+      "cmd": ["go", "test", "-count=1", "-run", "^TestParse", "./..."],
+      "weight": 2,
+      "timeout": 240,
+      "description": "expression syntax, validation and String()"
+    },
+    {
+      "name": "schedule",
+      "cmd": ["go", "test", "-count=1", "-run", "^TestSchedule", "./..."],
+      "weight": 3,
+      "timeout": 240,
+      "description": "Matches() and Next()"
+    }
+  ]
+}

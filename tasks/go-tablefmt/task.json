@@ -1,0 +1,28 @@
+{
+  "id": "go-tablefmt",
+  "title": "CSV to aligned text table formatter",
+  "language": "go",
+  "summary": "Implement the table package and the tablefmt CLI: column alignment, rune-safe truncation and markdown output.",
+  "budget_seconds": 1200,
+  "test_timeout": 240,
+  "protected_paths": ["table/table_test.go", "main_test.go"],
+  "spec": "README.md",
+  "spec_target": "TASK.md",
+  "seed": "seed",
+  "suites": [
+    {
+      "name": "table",
+      "cmd": ["go", "test", "-count=1", "./table"],
+      "weight": 3,
+      "timeout": 240,
+      "description": "the rendering library"
+    },
+    {
+      "name": "cli",
+      "cmd": ["go", "test", "-count=1", "."],
+      "weight": 2,
+      "timeout": 240,
+      "description": "flags, input handling and exit codes"
+    }
+  ]
+}

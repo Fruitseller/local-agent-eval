@@ -1,0 +1,28 @@
+{
+  "id": "py-semver",
+  "title": "Semantic version parsing, precedence and constraint matching",
+  "language": "python",
+  "summary": "Implement semver.py: a SemVer 2.0.0 parser with full precedence rules and a constraint matcher (=, !=, <, <=, >, >=, ~, ^, *, AND, ||).",
+  "budget_seconds": 1200,
+  "test_timeout": 120,
+  "protected_paths": ["tests"],
+  "spec": "README.md",
+  "spec_target": "TASK.md",
+  "seed": "seed",
+  "suites": [
+    {
+      "name": "version",
+      "cmd": ["python3", "-m", "unittest", "-v", "tests.test_version"],
+      "weight": 1,
+      "timeout": 120,
+      "description": "parsing, canonical form and precedence"
+    },
+    {
+      "name": "constraints",
+      "cmd": ["python3", "-m", "unittest", "-v", "tests.test_constraints"],
+      "weight": 2,
+      "timeout": 120,
+      "description": "satisfies() and max_satisfying()"
+    }
+  ]
+}

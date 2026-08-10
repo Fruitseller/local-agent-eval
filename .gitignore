@@ -1,0 +1,43 @@
+# --- Lauf-Artefakte (niemals committen) -------------------------------------
+# Ergebnisse werden lokal erzeugt und ueber Run-Branches oder CI-Artefakte
+# veroeffentlicht, nicht ueber main. Siehe docs/holdout.md.
+/results/
+/runs/
+/artifacts/
+*.run.json
+
+# --- Holdout-Material (darf dieses Repo nie erreichen) ----------------------
+# Das oeffentliche Repo enthaelt ausschliesslich Public-Smoke-Tests.
+# Holdout-Tests und Referenzloesungen leben in einem separaten, privaten Repo.
+/holdout/
+/.holdout/
+/private/
+**/holdout/
+**/holdout_*
+**/tests_holdout/
+**/solution/
+**/solutions/
+**/reference_solution*
+**/*.holdout.*
+
+# --- Lokale Konfiguration ---------------------------------------------------
+# Nur die *.example.* Dateien sind versioniert.
+/config/benchmark.env
+/config/*.local.*
+/config/pi-models.json
+/config.local
+/config.local.*
+/.endpoint.env
+/.endpoint.local
+.env
+
+# --- Sprach-/Toolchain-Muell ------------------------------------------------
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.test
+*.out
+/tmp/
+.DS_Store

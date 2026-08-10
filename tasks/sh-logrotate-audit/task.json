@@ -1,0 +1,21 @@
+{
+  "id": "sh-logrotate-audit",
+  "title": "Offline log rotation policy auditor",
+  "language": "shell",
+  "summary": "Implement a deterministic Bash auditor for log size, age, ownership, mode, missing paths and symlinks below an offline root.",
+  "budget_seconds": 1200,
+  "test_timeout": 120,
+  "protected_paths": ["tests"],
+  "spec": "README.md",
+  "spec_target": "TASK.md",
+  "seed": "seed",
+  "suites": [
+    {
+      "name": "audit",
+      "cmd": ["bash", "tests/run.sh"],
+      "weight": 3,
+      "timeout": 120,
+      "description": "policy parsing, file checks, deterministic output and exit codes"
+    }
+  ]
+}

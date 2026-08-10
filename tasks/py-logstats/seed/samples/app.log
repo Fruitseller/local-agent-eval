@@ -1,0 +1,10 @@
+2026-02-01T08:00:00Z INFO  auth    service started
+2026-02-01T08:00:05Z DEBUG db      pool size 8
+2026-02-01T08:15:30Z ERROR auth    login failed for user alice
+2026-02-01T08:15:31Z WARN  auth    3 failed attempts from 10.0.0.4
+this line is not a log entry at all
+2026-02-01T08:40:00Z INFO  db      migration 0042 applied
+2026-02-01T09:05:12Z ERROR db      deadlock detected, retrying
+2026-02-01T09:30:00Z FATAL core    unrecoverable state, shutting down
+
+2026-02-01T09:31:00Z TRACE core    level TRACE does not exist
