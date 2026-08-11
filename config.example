@@ -15,6 +15,7 @@ PI_COMMAND=pi -p --mode json --provider {provider} --model {model}
 # Vergleichsrelevante Grenzen
 BENCH_BUDGET_SECONDS=1200
 BENCH_TEST_TIMEOUT=300
+# Isoliert PI_CODING_AGENT_DIR je Lauf; HOME bleibt absichtlich erhalten.
 BENCH_ISOLATE_PI_CONFIG=1
 BENCH_RESTORE_PROTECTED=1
 BENCH_RESULTS_DIR=results

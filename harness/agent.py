@@ -68,14 +68,14 @@ def build_pi_argv(cfg, session_dir, prompt):
     return argv
 
 
-def build_env(cfg, pi_config_dir, home_dir):
+def build_env(cfg, pi_config_dir):
     """Environment for the agent process.
 
-    Kept close to the operator's environment (the agent needs PATH and the Go
-    and Python toolchains) but with everything that could make two runs differ
-    pinned down.
+    Keep the operator's HOME intact: pi's binary and provider integrations may
+    read runtime state from it before consulting ``PI_CODING_AGENT_DIR``.
+    Benchmark-specific pi settings, models and extensions are isolated through
+    that variable instead.
     """
-    real_home = os.environ.get("HOME", "")
     env = dict(os.environ)
     env.update(
         {
@@ -91,17 +91,6 @@ def build_env(cfg, pi_config_dir, home_dir):
     )
     if pi_config_dir:
         env["PI_CODING_AGENT_DIR"] = str(pi_config_dir)
-    if home_dir:
-        # A dedicated HOME keeps a stray ~/.gitconfig, ~/.pi or user-level
-        # agent instruction file out of the run.
-        env["HOME"] = str(home_dir)
-        # Toolchain build caches stay *shared* on purpose: a cold Go cache costs
-        # tens of seconds of the agent's wall-clock budget, so pinning them to
-        # one warm location is the fairer choice, and a compiler cache cannot
-        # leak task knowledge between agents.
-        if real_home:
-            env.setdefault("GOCACHE", str(Path(real_home) / ".cache" / "go-build"))
-            env.setdefault("GOMODCACHE", str(Path(real_home) / "go" / "pkg" / "mod"))
     if cfg.base_url:
         env["PI_BASE_URL"] = cfg.base_url
     if cfg.api_type:
@@ -127,15 +116,12 @@ def run(cfg, prompt, workspace, run_dir, budget_seconds):
     stderr_path = run_dir / "agent.stderr.txt"
 
     pi_config_dir = None
-    home_dir = None
     if cfg.isolate_pi_config:
         from config import build_pi_config_dir
 
         pi_config_dir = build_pi_config_dir(cfg, run_dir)
-        home_dir = run_dir / "home"
-        home_dir.mkdir(exist_ok=True)
 
-    env = build_env(cfg, pi_config_dir, home_dir)
+    env = build_env(cfg, pi_config_dir)
 
     if cfg.pi_command:
         command = (

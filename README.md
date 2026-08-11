@@ -12,9 +12,11 @@ frisches Git-Repository, denselben Prompt und ein hartes Zeitbudget von
 Vergleiche benötigen denselben Commit, dieselben öffentlichen Tasks, Hardware,
 Toolchain, Agent-Version und Agent-Flags. Nutze identische Kontext- und
 Ausgabelimits, ändere das Zeitbudget nicht und wiederhole Läufe bei Bedarf mit
-`--repeat`. Der Harness isoliert Pi-Konfiguration und Benutzerdateien, schützt
-öffentliche Tests vor Änderungen und protokolliert Laufzeit, Diff, Test-Suites,
-Token/Kosten (wenn Pi sie meldet) und Timeouts.
+`--repeat`. Der Harness isoliert Pi-Konfiguration über eine pro Lauf angelegte
+`PI_CODING_AGENT_DIR`, erhält aber das echte Benutzer-`HOME`: Pi benötigt dort
+auf manchen Installationen Runtime-State, bevor es diese Konfiguration lädt.
+Öffentliche Tests sind vor Änderungen geschützt; außerdem werden Laufzeit,
+Diff, Test-Suites, Token/Kosten (wenn Pi sie meldet) und Timeouts protokolliert.
 
 ## Konfiguration und Start
 
