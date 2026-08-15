@@ -1,0 +1,21 @@
+{
+  "id": "go-tally",
+  "title": "wc-style line, word, character and byte counter",
+  "language": "go",
+  "summary": "Implement the tally package: count lines, words, Unicode code points and bytes in a string with wc -l -w -m -c semantics.",
+  "budget_seconds": 1200,
+  "test_timeout": 240,
+  "protected_paths": ["tally_test.go"],
+  "spec": "README.md",
+  "spec_target": "TASK.md",
+  "seed": "seed",
+  "suites": [
+    {
+      "name": "tally",
+      "cmd": ["go", "test", "-count=1", "./..."],
+      "weight": 1,
+      "timeout": 240,
+      "description": "line/word/char/byte counting per wc semantics"
+    }
+  ]
+}
